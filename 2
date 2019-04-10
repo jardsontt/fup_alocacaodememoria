@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+float* ProdutoVetorial(float*,float*);
+void Imprimir(float*);
+
+int main(){
+	int posicao;
+	//declaracao dos vetores
+	float primeiro_vetor[3] = {1.5, 3.0, 2.5};
+	float segundo_vetor[3] = {5.8, 2.7, 3.14};
+	float *resultado;
+
+	resultado = ProdutoVetorial(primeiro_vetor,segundo_vetor);
+
+    Imprimir(primeiro_vetor);
+    Imprimir(segundo_vetor);
+    Imprimir(resultado);
+
+	return 0;
+}
+//sub rotinas
+float* ProdutoVetorial(float* u,float* v){ //primeiro vetor = u e segundo vetor = v
+	float* vetorAuxiliar = (float*)malloc( 3 * sizeof(float)); //declarao do vetor
+	vetorAuxiliar[0]=( u[1]*v[2] ) - ( v[1]*u[2] );
+	vetorAuxiliar[1]=( u[2]*v[0] ) - ( v[2]*u[0] );
+	vetorAuxiliar[2]=( u[0]*v[1] ) - ( v[0]*u[1] );
+
+	return vetorAuxiliar;
+}
+void Imprimir(float* vetor){
+    int posicao;
+    for(posicao=0;posicao<3;posicao++){
+        printf("%.2f\t",vetor[posicao]);
+    }
+    printf("\n");
+}
