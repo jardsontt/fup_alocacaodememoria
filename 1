@@ -1,0 +1,54 @@
+#include<stdio.h> //blib entrada e saida
+#include<math.h> // blib de matematica
+#include<stdlib.h> // blib com mais funcoes
+
+float Media(int,float*); //declaracao de prototipo
+float Variancia(int,float*,float);
+
+int main(){
+	int i,quantidadeNotas; //declaracao de varioveis
+	float *notas;
+	float media,variancia;
+	//exec
+	printf("Informe o numero de notas a serem calculadas: ");
+	scanf("%d",&quantidadeNotas); //numero de notas foi informado
+	
+	notas = (float *)malloc(quantidadeNotas * sizeof(float) );
+	
+	if(notas == NULL){
+		printf("Memoria insuficiente!");
+		exit(1);
+	}
+	
+	for(i=0;i<quantidadeNotas;i++){
+		printf("\nDigite as notas: ");
+		scanf("%f",&notas[i]);
+	}
+	
+	media=Media(quantidadeNotas,notas);                //chamando media das notas
+	variancia=Variancia(quantidadeNotas,notas,media);             //chamando a variancia das nota
+	
+	printf("\na media das notas eh: %.2f\n",media);
+	printf("\na variancia das notas eh: %.2f\n",variancia);
+	printf("\no desvio padrao delas eh: %.2f\n",sqrt(variancia));
+	
+	return 0;
+}
+/*calculo media*/
+float Media(int n,float* v){
+	int i;
+	float s = 0.0;
+	for(i=0;i<n;i++){
+		s+=v[i];
+	}
+	return s/n;
+}
+/*calculo variancia*/
+float Variancia(int n,float* v,float m){
+	int i;
+	float s=0.0;
+	for(i=0;i<n;i++){
+		s+=(v[i]-m)*(v[i]-m);
+	}
+	return s/n;
+}
