@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+float AcessarElementoMatriz(int dim,float *matriz,int pos_linha, int pos_coluna);
+
+int main(){
+	int dim,dimV,pos_linha,pos_coluna;
+	float *matriz;
+	float resultado;
+	dimV=((dim*dim+dim)/2);
+	
+	printf("\nDigite a dimensao da matriz:");
+	
+	scanf("%d",&dim);
+	matriz = (float*)malloc(dimV * sizeof(float));
+	
+	for (int ii = 0; ii < dimV; ii++){
+		matriz[ii] = (float) ii/2;
+	}
+	
+	for(int ii=0;ii<dimV;ii++){
+		printf("%f\t",matriz[ii]);
+	}
+	
+	printf("\nindique a posicao da linha a ser acessada: ");
+	scanf("%d",&pos_linha);
+	printf("\nindique a posicao da linha a ser acessada: ");
+	scanf("%d",&pos_coluna);
+
+	
+	resultado = AcessarElementoMatriz(dim,matriz,pos_linha,pos_coluna);
+	printf("\nA posicao (%d,%d) da matriz simetrica e: %f",pos_linha,pos_coluna,resultado);
+	
+	return 0;
+}
+
+float AcessarElementoMatriz(int dim,float *matriz,int pos_linha, int pos_coluna){
+	int k;
+	
+	if(pos_linha >= pos_coluna){
+		k=(pos_linha-1)* pos_linha/2+(pos_coluna - 1);
+	} else {
+		k = (pos_coluna - 1) * pos_coluna/2+(pos_linha - 1);
+	}
+	return matriz[k];
+}
