@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+float* CriarMatriz(int dimensao){
+	int caso_n = dimensao*(dimensao + 1)/2;
+	float* matriz = (float*)malloc(caso_n*sizeof(float));
+	
+	return matriz;
+}
+
+void AtribuirValor(int i,int j,float *matriz,float valor){
+	int posicao;
+	
+	if(i >= j) posicao = i*(i+1)/2 + j;
+	else posicao = j*(j+1)/2 + i;
+	
+	matriz[posicao] = valor;
+}
+
+int main(){
+	int dimensao;
+	float* Matriz;
+	
+	printf("Digite a dimensao da matriz n x n : ");
+	scanf("%d",&dimensao);
+	
+	Matriz = CriarMatriz(dimensao);
+	
+	float valor;
+	float posicao_i,posicao_j;
+	
+	printf("\nDigite as posicoes a serem acessadas: ");
+	scanf("%d %d",&posicao_i,posicao_j);
+	
+	printf("\nDigite o valor a ser colocado na posicao %d %d : ");
+	scanf("%lf", &valor);
+	
+	AtribuirValor(posicao_i,posicao_j,Matriz,valor);
+	
+	return 0;
+}
